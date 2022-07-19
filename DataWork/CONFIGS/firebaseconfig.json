@@ -1,0 +1,10 @@
+{
+    "apiKey": "AIzaSyAbHDxlP3DTVYvsfS4lrJM6k9NzYaiw0fc",
+    "authDomain": "tweetstockpred.firebaseapp.com",
+    "databaseURL": "https://tweetstockpred-default-rtdb.europe-west1.firebasedatabase.app",
+    "projectId": "tweetstockpred",
+    "storageBucket": "tweetstockpred.appspot.com",
+    "messagingSenderId": "576775960586",
+    "appId": "1:576775960586:web:0825f797f3a1ea24ff47f3",
+    "measurementId": "G-GGKEFFC84S"
+}
