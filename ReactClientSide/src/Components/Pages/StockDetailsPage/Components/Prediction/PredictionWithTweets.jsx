@@ -37,7 +37,7 @@ export default function PredictionWithTweets(props) {
     statsTableData.push({
       label: "Prediction:",
       value:
-        predictionResponse["Prediction"]["prediction"] == 1 ? "Up" : "Down",
+        predictionResponse["Prediction"]["prediction"] === 1 ? "Up" : "Down",
     });
   }
 

@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import StockChartPanel from "./Components/StockChartPanel";
 import "../../Configs/Global";
 import "./StockChartStyles.css";
-import { rapidApiKey } from "../../Configs/apiUrlsKeys";
+//import { rapidApiKey } from "../../Configs/apiUrlsKeys";
 import { Button } from "@mui/material"; //import yahooStockApi from "yahoo-stock-api";
 
 const round = (number) => {
@@ -20,7 +20,6 @@ export default function StockChart(props) {
   const [price, setPrice] = useState(null);
   const [priceTime, setPriceTime] = useState(null);
   const [isStockValid, setIsStockValid] = useState(true);
-  const [timeoutId, setTimeoutId] = useState(null);
   const [clickedBtn, setClickedBtn] = useState("live");
 
   const chart_options = {
@@ -62,7 +61,6 @@ export default function StockChart(props) {
 
   const fetchByDates = (interval) => {
     setClickedBtn(interval);
-    timeoutId && clearTimeout(timeoutId);
     const encodedParams = new URLSearchParams();
     let today = new Date();
     encodedParams.append(
@@ -130,7 +128,8 @@ export default function StockChart(props) {
       props.stock_ticker === ":entitySlug"
     );
   };
-  const getLatestPrice = async () => {
+
+  const fetchLatestPrice = async () => {
     if (!props.stock_ticker) return false;
     setClickedBtn("live");
     try {
@@ -166,15 +165,19 @@ export default function StockChart(props) {
     } catch (error) {
       console.log(error);
     }
-    setTimeoutId(setTimeout(getLatestPrice, 5000 * 2));
-    return () => {
-      clearTimeout(timeoutId);
-    };
   };
+
   useEffect(() => {
-    getLatestPrice();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.stock_ticker, global.config.theme]);
+    console.log("using effect - start", props.stock_ticker);
+    if (clickedBtn !== "live") return;
+    fetchLatestPrice();
+    //setTimeoutId(setTimeout(fetchLatestPrice, 5000 * 2));
+    const interval = setInterval(fetchLatestPrice, 5000);
+    console.log("using effect - interval set", props.stock_ticker);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [props.stock_ticker, clickedBtn]);
 
   const direction = props.predictionDir;
   const clicked = "contained";
@@ -206,7 +209,7 @@ export default function StockChart(props) {
       >
         <Button
           variant={clickedBtn === "live" ? clicked : unclicked}
-          onClick={(e) => getLatestPrice()}
+          onClick={() => fetchLatestPrice()}
         >
           Live
         </Button>

@@ -79,8 +79,13 @@ export default function App() {
         <NavBar />
 
         {/* <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} /> */}
-        <ThemeController />
 
+        {/* <ThemeController /> */}
+        <Sticky>
+          <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
+            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+        </Sticky>
         <Routes>
           <Route path={navPaths["home"]} element={<HomePage />} />
           <Route

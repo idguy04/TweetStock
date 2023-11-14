@@ -77,15 +77,21 @@ export function PredictionStatsPopUp(props) {
           }}
         />
 
-        <DialogContent sx={theme_sx} dividers>
+        <DialogContent sx={theme_sx} dividers={true}>
           <div className="tweetsAndTableContainer">
             {props.tweetsArr &&
               props.tweetsArr.length > 0 &&
               props.tweetsArr.map((tweet) => {
                 return (
-                  <div className="tweetsAndTableContainer">
-                    <Typography gutterBottom>
-                      <Tweet tweetId={tweet["tweet_id"]} />
+                  <div
+                    className="tweetsAndTableContainer"
+                    key={tweet["tweet_id"]}
+                  >
+                    <Typography key={tweet["tweet_id"]} gutterBottom>
+                      <Tweet
+                        key={tweet["tweet_id"]}
+                        tweetId={tweet["tweet_id"]}
+                      />
                     </Typography>
                   </div>
                 );
