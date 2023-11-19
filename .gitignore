@@ -349,7 +349,9 @@ DataWork/Data/CSVs/Initial_Data/*
 DataWork/OLD/*
 DataWork/SelectedModels (For Retraining)/*
 ServerSide/Web.config
-TWEETSTOCK/ServerSide/Web.config
+./ServerSide/Web.config
+ReactClientSide/src/Components/Configs/apiUrlsKeys.jsx
+ReactClientSide/src/Components/Configs/FirebaseConfig.jsx
 .VSCodeCounter/2022-07-16_20-28-04/details.md
 .VSCodeCounter/2022-07-16_20-28-04/diff-details.md
 .VSCodeCounter/2022-07-16_20-28-04/diff.csv
